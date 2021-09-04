@@ -1,5 +1,6 @@
 package com.larseckart.math;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -58,5 +59,11 @@ class FractionTest {
   @Test
   void denominator_of_zero_causes_exception() {
     assertThrows(IllegalArgumentException.class, () -> Fraction.of(1, 0));
+  }
+
+  @Test
+  @Disabled("implement GCD first")
+  void lowest_term() {
+    assertThat(Fraction.of(4,2)).isEqualTo(Fraction.from(2));
   }
 }

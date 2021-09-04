@@ -47,4 +47,9 @@ public class Fraction {
   public int hashCode() {
     return Objects.hash(numerator, denominator);
   }
+
+  @Override
+  public String toString() {
+    return "Fraction " + numerator + "/" + denominator;
+  }
 }
