@@ -28,10 +28,8 @@ public final class Fraction {
     if (this.denominator == other.denominator) {
       return Fraction.of(this.numerator + other.numerator, denominator);
     }
-    final int topLeft = this.numerator * other.denominator;
-    final int bottomLeft = this.denominator * other.denominator;
-    final int topRight = this.denominator * other.numerator;
-    return Fraction.of(topLeft + topRight, bottomLeft);
+    return Fraction.of(this.numerator * other.denominator + this.denominator * other.numerator,
+        this.denominator * other.denominator);
   }
 
   @Override
