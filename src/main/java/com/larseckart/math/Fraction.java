@@ -44,6 +44,14 @@ public final class Fraction {
     return Fraction.of(this.numerator * other.numerator, this.denominator * other.denominator);
   }
 
+  public Fraction divide(Fraction other) {
+    return this.times(other.reciprocal());
+  }
+
+  private Fraction reciprocal() {
+    return Fraction.of(this.denominator, this.numerator);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

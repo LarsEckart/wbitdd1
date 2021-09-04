@@ -83,6 +83,11 @@ class FractionTest {
   }
 
   @Test
+  void divide_two_fractions_with_different_denominator() {
+    assertThat(Fraction.of(1, 2).divide(Fraction.of(3, 4))).isEqualTo(Fraction.of(2, 3));
+  }
+
+  @Test
   void negative_fractions_equality() {
     assertAll(
         () -> assertThat(Fraction.of(-1, 1)).isEqualTo(Fraction.from(-1)),
