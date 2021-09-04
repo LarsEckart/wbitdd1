@@ -1,4 +1,4 @@
-package kata;
+package com.larseckart.math;
 
 import java.io.IOException;
 
