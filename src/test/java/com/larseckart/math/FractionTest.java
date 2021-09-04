@@ -21,9 +21,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 class FractionTest {
 
   @Test
-  @Disabled("just an exercise about the api of fraction")
   void my_first_test() {
-    assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 5));
+    assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 15));
   }
 
   @ParameterizedTest
