@@ -25,14 +25,15 @@ public final class Fraction {
       numerator = numerator * -1;
     }
     final int gcd = GCD.from(numerator, denominator);
-    return new Fraction(numerator/gcd, denominator/gcd);
+    return new Fraction(numerator / gcd, denominator / gcd);
   }
 
   public Fraction plus(Fraction other) {
     if (this.denominator == other.denominator) {
       return Fraction.of(this.numerator + other.numerator, denominator);
     }
-    return Fraction.of(this.numerator * other.denominator + this.denominator * other.numerator,
+    return Fraction.of(
+        this.numerator * other.denominator + this.denominator * other.numerator,
         this.denominator * other.denominator);
   }
 
