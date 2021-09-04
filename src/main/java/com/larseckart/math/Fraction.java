@@ -29,9 +29,6 @@ public final class Fraction {
   }
 
   public Fraction plus(Fraction other) {
-    if (this.denominator == other.denominator) {
-      return Fraction.of(this.numerator + other.numerator, denominator);
-    }
     return Fraction.of(
         this.numerator * other.denominator + this.denominator * other.numerator,
         this.denominator * other.denominator);
