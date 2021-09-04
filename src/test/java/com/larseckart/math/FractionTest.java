@@ -1,6 +1,7 @@
 package com.larseckart.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
@@ -39,16 +40,11 @@ class FractionTest {
 
   @Test
   void equality() {
-    Assertions.assertAll(
+    assertAll(
         () -> assertThat(Fraction.from(1)).isEqualTo(Fraction.from(1)),
         () -> assertThat(Fraction.of(1, 1)).isEqualTo(Fraction.from(1)),
         () -> assertThat(Fraction.of(3, 1)).isEqualTo(Fraction.from(3)));
     EqualsVerifier.forClass(Fraction.class).verify();
-  }
-
-  @Test
-  void not_equal_to_different_fraction() {
-    assertThat(Fraction.from(1)).isNotEqualTo(Fraction.from(0));
   }
 
   @Test
@@ -57,8 +53,8 @@ class FractionTest {
   }
 
   @Test
-  void lowest_term() {
-    Assertions.assertAll(
+  void fractions_are_always_expressed_at_lowest_term() {
+    assertAll(
         () -> assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2)),
         () -> assertThat(Fraction.of(2, 4)).isEqualTo(Fraction.of(1, 2)));
   }
