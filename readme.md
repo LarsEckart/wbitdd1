@@ -1,5 +1,12 @@
 # Cohort 1 of The World’s Best Intro to TDD: Level 1, Online Community Edition.
 
+## Releases
+
+### 1.0.0 (on 04.09.2021)
+
+For now, the only way to use this library is by adding the jar file to your project's classpath.
+You can download the jar file [here](releases/Fractions-1.0.0.jar).
+
 ## Inbox
 
 ### features
