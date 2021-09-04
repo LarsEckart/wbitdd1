@@ -38,4 +38,9 @@ class FractionTest {
   void one_plus_zero() {
     assertThat(Fraction.from(1).plus(Fraction.from(0))).isEqualTo(Fraction.from(1));
   }
+
+  @Test
+  void one_plus_one() {
+    assertThat(Fraction.from(1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
+  }
 }
