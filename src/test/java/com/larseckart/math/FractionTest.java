@@ -62,7 +62,6 @@ class FractionTest {
   }
 
   @Test
-  @Disabled("implement GCD first")
   void lowest_term() {
     assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2));
   }
