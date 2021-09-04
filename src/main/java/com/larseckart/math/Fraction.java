@@ -8,8 +8,9 @@ public class Fraction {
   private final int denominator;
 
   public Fraction(int numerator, int denominator) {
-    this.numerator = numerator;
-    this.denominator = denominator;
+    final int gcd = GCD.from(numerator, denominator);
+    this.numerator = numerator / gcd;
+    this.denominator = denominator / gcd;
   }
 
   public static Fraction of(int numerator, int denominator) {
@@ -17,7 +18,7 @@ public class Fraction {
       throw new IllegalArgumentException();
     }
     final int gcd = GCD.from(numerator, denominator);
-    return new Fraction(numerator/gcd, denominator/gcd);
+    return new Fraction(numerator, denominator);
   }
 
   public static Fraction from(int integer) {
