@@ -69,9 +69,11 @@ class FractionTest {
   }
 
   @Test
-  void adding_two_positive_but_smaller_than_one_fractions() {
+  void adding_two_fractions_with_same_denominator() {
     assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 4)))
         .isEqualTo(Fraction.of(1, 2));
+    assertThat(Fraction.of(1, 3).plus(Fraction.of(2, 3)))
+        .isEqualTo(Fraction.from(1));
   }
 
   @Nested
