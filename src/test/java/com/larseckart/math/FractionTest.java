@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Set;
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
@@ -63,7 +62,7 @@ class FractionTest {
   void subtracting_two_fractions_with_same_denominator() {
     assertAll(
         () -> assertThat(Fraction.of(2, 4).minus(Fraction.of(1, 4))).isEqualTo(Fraction.of(1, 4)),
-        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 3))).isEqualTo(Fraction.of(1,3)));
+        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 3))).isEqualTo(Fraction.of(1, 3)));
   }
 
   @Test
@@ -75,8 +74,12 @@ class FractionTest {
 
   @Test
   void subtracting_two_fractions_with_different_denominator() {
-    assertAll(
-        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 6)));
+    assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 6));
+  }
+
+  @Test
+  void multiply_two_fractions_with_different_denominator() {
+    assertThat(Fraction.of(2, 3).times(Fraction.of(3, 4))).isEqualTo(Fraction.of(1, 2));
   }
 
   @Test

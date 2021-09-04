@@ -40,6 +40,10 @@ public final class Fraction {
         this.denominator * other.denominator);
   }
 
+  public Fraction times(Fraction other) {
+    return Fraction.of(this.numerator * other.numerator, this.denominator * other.denominator);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
