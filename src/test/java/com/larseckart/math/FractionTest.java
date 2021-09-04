@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Set;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -12,6 +13,12 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @ExtendWith(FastTestCommitRevertMainExtension.class)
@@ -23,10 +30,14 @@ class FractionTest {
     assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 5));
   }
 
-  @Test
-  void zero_plus_zero() {
-    assertThat(Fraction.from(0).plus(Fraction.from(0))).isEqualTo(Fraction.from(0));
+  @ParameterizedTest
+  @CsvSource({"0,0,0"})
+  void zero_plus_zero(int first, int second, int result) {
+    assertThat(Fraction.from(first).plus(Fraction.from(second))).isEqualTo(Fraction.from(result));
   }
+
+  @Test
+  void addition_for_whole_numbers() {}
 
   @Test
   void equals() {
