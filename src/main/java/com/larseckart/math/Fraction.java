@@ -15,11 +15,11 @@ public class Fraction {
   }
 
   public static Fraction from(int integer) {
-    return new Fraction(0);
+    return new Fraction(integer);
   }
 
   public Fraction plus(Fraction other) {
-    return Fraction.from(0);
+    return Fraction.from(this.integer + other.integer);
   }
 
   @Override

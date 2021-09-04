@@ -30,6 +30,11 @@ class FractionTest {
   }
 
   @Test
+  void not_equal_to_different_fraction() {
+    assertThat(Fraction.from(1)).isNotEqualTo(Fraction.from(0));
+  }
+
+  @Test
   void one_plus_zero() {
     assertThat(Fraction.from(1).plus(Fraction.from(0))).isEqualTo(Fraction.from(1));
   }
