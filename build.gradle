@@ -3,6 +3,8 @@ plugins {
     id 'jacoco'
 }
 
+version = "1.0.0"
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(16)
@@ -26,7 +28,7 @@ dependencies {
 tasks.withType(JavaCompile) {
     options.compilerArgs.add("-Xlint:all")
     options.incremental = true
-    
+
     if (jdkWithPreviewFeatures())
         options.compilerArgs.add("--enable-preview")
 }
@@ -37,7 +39,7 @@ test {
         events "passed", "skipped", "failed"
     }
     finalizedBy jacocoTestReport
-    
+
     if (jdkWithPreviewFeatures())
         jvmArgs("--enable-preview")
 }
