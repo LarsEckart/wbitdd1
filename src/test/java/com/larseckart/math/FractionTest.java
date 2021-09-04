@@ -3,6 +3,7 @@ package com.larseckart.math;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -46,7 +47,8 @@ class FractionTest {
 
   @Test
   void fraction_with_numerator_and_denominator_of_1_is_equal_to_fraction_from_whole_number() {
-    assertThat(Fraction.of(1,1)).isEqualTo(Fraction.from(1));
-    assertThat(Fraction.of(3,1)).isEqualTo(Fraction.from(3));
+    Assertions.assertAll(
+        () -> assertThat(Fraction.of(1, 1)).isEqualTo(Fraction.from(1)),
+        () -> assertThat(Fraction.of(3, 1)).isEqualTo(Fraction.from(3)));
   }
 }
