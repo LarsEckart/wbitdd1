@@ -21,6 +21,8 @@ class GCD {
 
   static Set<Integer> divisors(int number) {
     Set<Integer> result = new HashSet<>();
+    result.add(number);
+    result.add(1);
     for (int i = number - 1; i > 0; i--) {
       if (number % i == 0) {
         result.add(i);

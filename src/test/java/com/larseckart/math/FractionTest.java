@@ -72,7 +72,7 @@ class FractionTest {
 
     @Test
     void divisors_of_a_number() {
-      assertThat(GCD.divisors(6)).isEqualTo(Set.of(1, 2, 3));
+      assertThat(GCD.divisors(6)).isEqualTo(Set.of(1, 2, 3, 6));
     }
 
     @Test
@@ -80,10 +80,9 @@ class FractionTest {
       assertThat(GCD.from(54,24)).isEqualTo(6);
     }
 
-
     @Test
     void common_divisors() {
-      assertThat(GCD.divisors(6)).isEqualTo(Set.of(1, 2, 3));
+      assertThat(GCD.divisors(6)).isEqualTo(Set.of(1, 2, 3, 6));
       assertThat(GCD.commonDivisors(GCD.divisors(6), GCD.divisors(9))).isEqualTo(Set.of(3, 1));
       assertThat(GCD.max(GCD.commonDivisors(GCD.divisors(6), GCD.divisors(9)))).isEqualTo(3);
     }
