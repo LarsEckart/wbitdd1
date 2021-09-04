@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Set;
-import java.util.stream.Stream;
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -16,11 +14,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @ExtendWith(FastTestCommitRevertMainExtension.class)
@@ -61,18 +55,16 @@ class FractionTest {
 
   @Test
   void adding_two_fractions_with_same_denominator() {
-    assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 4)))
-        .isEqualTo(Fraction.of(1, 2));
-    assertThat(Fraction.of(1, 3).plus(Fraction.of(2, 3)))
-        .isEqualTo(Fraction.from(1));
+    assertAll(
+        () -> assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 4))).isEqualTo(Fraction.of(1, 2)),
+        () -> assertThat(Fraction.of(1, 3).plus(Fraction.of(2, 3))).isEqualTo(Fraction.from(1)));
   }
 
   @Test
   void adding_two_fractions_with_different_denominator() {
-    assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2)))
-        .isEqualTo(Fraction.of(3, 4));
-    assertThat(Fraction.of(4, 3).plus(Fraction.of(1, 2)))
-        .isEqualTo(Fraction.of(11, 6));
+    assertAll(
+        () -> assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(3, 4)),
+        () -> assertThat(Fraction.of(4, 3).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(11, 6)));
   }
 
   @Nested
