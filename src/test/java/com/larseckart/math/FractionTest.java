@@ -31,13 +31,10 @@ class FractionTest {
   }
 
   @ParameterizedTest
-  @CsvSource({"0,0,0"})
-  void zero_plus_zero(int first, int second, int result) {
+  @CsvSource({"0,0,0", "1,0,1"})
+  void addition_for_whole_numbers(int first, int second, int result) {
     assertThat(Fraction.from(first).plus(Fraction.from(second))).isEqualTo(Fraction.from(result));
   }
-
-  @Test
-  void addition_for_whole_numbers() {}
 
   @Test
   void equals() {
