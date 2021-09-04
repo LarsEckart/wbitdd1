@@ -80,6 +80,8 @@ class FractionTest {
   void adding_two_fractions_with_different_denominator() {
     assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2)))
         .isEqualTo(Fraction.of(3, 4));
+    assertThat(Fraction.of(4, 3).plus(Fraction.of(1, 2)))
+        .isEqualTo(Fraction.of(11, 6));
   }
 
   @Nested
