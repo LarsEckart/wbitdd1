@@ -4,14 +4,20 @@ import java.util.Objects;
 
 public class Fraction {
 
-  private final int integer;
+  private final int numerator;
+  private final int denominator;
 
   public Fraction(int integer) {
-    this.integer = integer;
+    this(integer, 1);
+  }
+
+  public Fraction(int numerator, int denominator) {
+    this.numerator = numerator;
+    this.denominator = denominator;
   }
 
   public static Fraction of(int numerator, int denominator) {
-    return null;
+    return new Fraction(numerator, denominator);
   }
 
   public static Fraction from(int integer) {
@@ -19,7 +25,7 @@ public class Fraction {
   }
 
   public Fraction plus(Fraction other) {
-    return Fraction.from(this.integer + other.integer);
+    return Fraction.from(this.numerator + other.numerator);
   }
 
   @Override
@@ -31,11 +37,11 @@ public class Fraction {
       return false;
     }
     Fraction fraction = (Fraction) o;
-    return integer == fraction.integer;
+    return numerator == fraction.numerator && denominator == fraction.denominator;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(integer);
+    return Objects.hash(numerator, denominator);
   }
 }

@@ -43,4 +43,9 @@ class FractionTest {
   void one_plus_one() {
     assertThat(Fraction.from(1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
   }
+
+  @Test
+  void fraction_with_numerator_and_denominator_of_1_is_equal_to_fraction_from_whole_number() {
+    assertThat(Fraction.of(1,1)).isEqualTo(Fraction.from(1));
+  }
 }
