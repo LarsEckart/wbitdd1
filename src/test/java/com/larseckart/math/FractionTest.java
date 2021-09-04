@@ -74,6 +74,12 @@ class FractionTest {
   }
 
   @Test
+  void subtracting_two_fractions_with_different_denominator() {
+    assertAll(
+        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 6)));
+  }
+
+  @Test
   void negative_fractions_equality() {
     assertAll(
         () -> assertThat(Fraction.of(-1, 1)).isEqualTo(Fraction.from(-1)),
