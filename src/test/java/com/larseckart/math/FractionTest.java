@@ -18,4 +18,9 @@ class FractionTest {
   void my_first_test() {
     assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 5));
   }
+
+  @Test
+  void zero_plus_zero() {
+    assertThat(Fraction.from(0).plus(Fraction.from(0))).isEqualTo(Fraction.from(0));
+  }
 }
