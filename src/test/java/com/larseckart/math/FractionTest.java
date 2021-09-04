@@ -5,9 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import org.assertj.core.api.AbstractBigDecimalAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -76,6 +80,19 @@ class FractionTest {
     @Test
     void divisors_of_a_number() {
       assertThat(divisors(6)).isEqualTo(Set.of(1, 2, 3));
+    }
+
+    @Test
+    void common_divisors() {
+      assertThat(commonDivisors(divisors(6), divisors(9))).isEqualTo(Set.of(3, 1));
+      assertThat(divisors(6)).isEqualTo(Set.of(1, 2, 3));
+    }
+
+    private  Set<Integer> commonDivisors(Collection<Integer> divisors, Collection<Integer> divisors1) {
+      return divisors.stream()
+          .distinct()
+          .filter(divisors1::contains)
+          .collect(Collectors.toSet());
     }
 
     private Set<Integer> divisors(int number) {
