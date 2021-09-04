@@ -1,6 +1,8 @@
 package com.larseckart.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import org.junit.jupiter.api.Assertions;
@@ -51,5 +53,10 @@ class FractionTest {
     Assertions.assertAll(
         () -> assertThat(Fraction.of(1, 1)).isEqualTo(Fraction.from(1)),
         () -> assertThat(Fraction.of(3, 1)).isEqualTo(Fraction.from(3)));
+  }
+
+  @Test
+  void denominator_of_zero_causes_exception() {
+    assertThrows(IllegalArgumentException.class, () -> Fraction.of(1, 0));
   }
 }
