@@ -68,6 +68,12 @@ class FractionTest {
         () -> assertThat(Fraction.of(2, 4)).isEqualTo(Fraction.of(1, 2)));
   }
 
+  @Test
+  void adding_two_positive_but_smaller_than_one_fractions() {
+    assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 4)))
+        .isEqualTo(Fraction.of(1, 2));
+  }
+
   @Nested
   class GreatestCommonDivisor {
 

@@ -29,7 +29,7 @@ public class Fraction {
   }
 
   public Fraction plus(Fraction other) {
-    return Fraction.from(this.numerator + other.numerator);
+    return Fraction.of(this.numerator + other.numerator, denominator);
   }
 
   @Override
