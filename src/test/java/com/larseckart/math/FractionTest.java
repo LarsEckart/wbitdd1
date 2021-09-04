@@ -71,8 +71,8 @@ class FractionTest {
   void negative_fractions_equality() {
     assertAll(
         () -> assertThat(Fraction.of(-1, 1)).isEqualTo(Fraction.from(-1)),
-        () -> assertThat(Fraction.of(1, -1)).isEqualTo(Fraction.from(-1))
-        );
+        () -> assertThat(Fraction.of(1, -1)).isEqualTo(Fraction.from(-1)),
+        () -> assertThat(Fraction.of(-1, -1)).isEqualTo(Fraction.from(1)));
   }
 
   @Nested
