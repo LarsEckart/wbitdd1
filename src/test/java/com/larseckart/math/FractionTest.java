@@ -2,14 +2,17 @@ package com.larseckart.math;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -64,6 +67,25 @@ class FractionTest {
   @Test
   @Disabled("implement GCD first")
   void lowest_term() {
-    assertThat(Fraction.of(4,2)).isEqualTo(Fraction.from(2));
+    assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2));
+  }
+
+  @Nested
+  class GreatestCommonDivisor {
+
+    @Test
+    void divisors_of_a_number() {
+      assertThat(divisors(6)).isEqualTo(Set.of(1, 2, 3));
+    }
+
+    private Set<Integer> divisors(int number) {
+      Set<Integer> result = new HashSet<>();
+      for (int i = number -1; i > 0; i--) {
+        if (number % i == 0) {
+          result.add(i);
+        }
+      }
+      return result;
+    }
   }
 }
