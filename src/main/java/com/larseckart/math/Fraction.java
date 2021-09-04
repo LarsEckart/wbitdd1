@@ -7,9 +7,13 @@ public class Fraction {
   private final int numerator;
   private final int denominator;
 
-  public Fraction(int numerator, int denominator) {
+  private Fraction(int numerator, int denominator) {
     this.numerator = numerator;
     this.denominator = denominator;
+  }
+
+  public static Fraction from(int integer) {
+    return of(integer, 1);
   }
 
   public static Fraction of(int numerator, int denominator) {
@@ -18,10 +22,6 @@ public class Fraction {
     }
     final int gcd = GCD.from(numerator, denominator);
     return new Fraction(numerator/gcd, denominator/gcd);
-  }
-
-  public static Fraction from(int integer) {
-    return of(integer, 1);
   }
 
   public Fraction plus(Fraction other) {
