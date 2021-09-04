@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Set;
 import java.util.stream.Stream;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -42,6 +43,7 @@ class FractionTest {
         () -> assertThat(Fraction.from(1)).isEqualTo(Fraction.from(1)),
         () -> assertThat(Fraction.of(1, 1)).isEqualTo(Fraction.from(1)),
         () -> assertThat(Fraction.of(3, 1)).isEqualTo(Fraction.from(3)));
+    EqualsVerifier.forClass(Fraction.class).verify();
   }
 
   @Test
