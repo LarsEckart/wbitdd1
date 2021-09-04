@@ -63,7 +63,9 @@ class FractionTest {
 
   @Test
   void lowest_term() {
-    assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2));
+    Assertions.assertAll(
+        () -> assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2)),
+        () -> assertThat(Fraction.of(2, 4)).isEqualTo(Fraction.of(1, 2)));
   }
 
   @Nested
@@ -76,7 +78,7 @@ class FractionTest {
 
     @Test
     void gcd_as_class() {
-      assertThat(GCD.from(54,24)).isEqualTo(6);
+      assertThat(GCD.from(54, 24)).isEqualTo(6);
     }
 
     @Test
@@ -85,6 +87,5 @@ class FractionTest {
       assertThat(GCD.commonDivisors(GCD.divisors(6), GCD.divisors(9))).isEqualTo(Set.of(3, 1));
       assertThat(GCD.max(GCD.commonDivisors(GCD.divisors(6), GCD.divisors(9)))).isEqualTo(3);
     }
-
   }
 }
