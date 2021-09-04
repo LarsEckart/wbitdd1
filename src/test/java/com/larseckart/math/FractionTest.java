@@ -60,6 +60,13 @@ class FractionTest {
   }
 
   @Test
+  void subtracting_two_fractions_with_same_denominator() {
+    assertAll(
+        () -> assertThat(Fraction.of(2, 4).minus(Fraction.of(1, 4))).isEqualTo(Fraction.of(1, 4)),
+        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 3))).isEqualTo(Fraction.of(1,3)));
+  }
+
+  @Test
   void adding_two_fractions_with_different_denominator() {
     assertAll(
         () -> assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(3, 4)),
