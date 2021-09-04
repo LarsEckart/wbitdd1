@@ -47,5 +47,6 @@ class FractionTest {
   @Test
   void fraction_with_numerator_and_denominator_of_1_is_equal_to_fraction_from_whole_number() {
     assertThat(Fraction.of(1,1)).isEqualTo(Fraction.from(1));
+    assertThat(Fraction.of(3,1)).isEqualTo(Fraction.from(3));
   }
 }
