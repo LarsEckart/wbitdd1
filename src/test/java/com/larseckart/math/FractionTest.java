@@ -67,6 +67,14 @@ class FractionTest {
         () -> assertThat(Fraction.of(4, 3).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(11, 6)));
   }
 
+  @Test
+  void negative_fractions_equality() {
+    assertAll(
+        () -> assertThat(Fraction.of(-1, 1)).isEqualTo(Fraction.from(-1)),
+        () -> assertThat(Fraction.of(1, -1)).isEqualTo(Fraction.from(-1))
+        );
+  }
+
   @Nested
   class GreatestCommonDivisor {
 

@@ -20,6 +20,10 @@ public final class Fraction {
     if (denominator == 0) {
       throw new IllegalArgumentException();
     }
+    if (denominator < 0) {
+      denominator = denominator * -1;
+      numerator = numerator * -1;
+    }
     final int gcd = GCD.from(numerator, denominator);
     return new Fraction(numerator/gcd, denominator/gcd);
   }
