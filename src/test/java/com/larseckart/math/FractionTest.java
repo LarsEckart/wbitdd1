@@ -43,6 +43,7 @@ class FractionTest {
   @Test
   void one_plus_one() {
     assertThat(Fraction.from(1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
+    assertThat(Fraction.of(1, 1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
   }
 
   @Test
