@@ -31,7 +31,7 @@ class FractionTest {
   }
 
   @ParameterizedTest
-  @CsvSource({"0,0,0", "1,0,1"})
+  @CsvSource({"0,0,0", "1,0,1", "1,1,2"})
   void addition_for_whole_numbers(int first, int second, int result) {
     assertThat(Fraction.from(first).plus(Fraction.from(second))).isEqualTo(Fraction.from(result));
   }
@@ -44,17 +44,6 @@ class FractionTest {
   @Test
   void not_equal_to_different_fraction() {
     assertThat(Fraction.from(1)).isNotEqualTo(Fraction.from(0));
-  }
-
-  @Test
-  void one_plus_zero() {
-    assertThat(Fraction.from(1).plus(Fraction.from(0))).isEqualTo(Fraction.from(1));
-  }
-
-  @Test
-  void one_plus_one() {
-    assertThat(Fraction.from(1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
-    assertThat(Fraction.of(1, 1).plus(Fraction.from(1))).isEqualTo(Fraction.from(2));
   }
 
   @Test
