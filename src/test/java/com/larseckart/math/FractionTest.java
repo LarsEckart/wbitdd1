@@ -76,6 +76,12 @@ class FractionTest {
         .isEqualTo(Fraction.from(1));
   }
 
+  @Test
+  void adding_two_fractions_with_different_denominator() {
+    assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2)))
+        .isEqualTo(Fraction.of(3, 4));
+  }
+
   @Nested
   class GreatestCommonDivisor {
 

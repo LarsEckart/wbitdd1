@@ -7,10 +7,6 @@ public class Fraction {
   private final int numerator;
   private final int denominator;
 
-  public Fraction(int integer) {
-    this(integer, 1);
-  }
-
   public Fraction(int numerator, int denominator) {
     this.numerator = numerator;
     this.denominator = denominator;
@@ -25,11 +21,17 @@ public class Fraction {
   }
 
   public static Fraction from(int integer) {
-    return new Fraction(integer);
+    return of(integer, 1);
   }
 
   public Fraction plus(Fraction other) {
-    return Fraction.of(this.numerator + other.numerator, denominator);
+    if (this.denominator == other.denominator) {
+      return Fraction.of(this.numerator + other.numerator, denominator);
+    }
+    final int topLeft = this.numerator * other.denominator;
+    final int bottomLeft = this.denominator * other.denominator;
+    final int topRight = this.denominator * other.numerator;
+    return Fraction.of(topLeft + topRight, bottomLeft);
   }
 
   @Override
