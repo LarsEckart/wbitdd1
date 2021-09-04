@@ -84,8 +84,13 @@ class FractionTest {
 
     @Test
     void common_divisors() {
-      assertThat(commonDivisors(divisors(6), divisors(9))).isEqualTo(Set.of(3, 1));
       assertThat(divisors(6)).isEqualTo(Set.of(1, 2, 3));
+      assertThat(commonDivisors(divisors(6), divisors(9))).isEqualTo(Set.of(3, 1));
+      assertThat(max(commonDivisors(divisors(6), divisors(9)))).isEqualTo(3);
+    }
+
+    private int max(Set<Integer> commonDivisors) {
+      return commonDivisors.stream().max(Integer::compareTo).orElseThrow();
     }
 
     private  Set<Integer> commonDivisors(Collection<Integer> divisors, Collection<Integer> divisors1) {
