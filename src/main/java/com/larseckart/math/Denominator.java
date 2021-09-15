@@ -1,6 +1,6 @@
 package com.larseckart.math;
 
-record Denominator(int value){
+record Denominator(int value) {
 
   Denominator {
     if (value == 0) {
