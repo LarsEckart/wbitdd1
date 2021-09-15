@@ -9,8 +9,12 @@ record Denominator(int value){
     this.value = value;
   }
 
-  boolean isNegative(){
+  boolean isNegative() {
     return this.value <0;
+  }
+
+  Denominator revert() {
+    return new Denominator(value * -1);
   }
 
 }

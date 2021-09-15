@@ -13,16 +13,20 @@ public final class Fraction {
   }
 
   public static Fraction from(int integer) {
-    return of(integer, 1);
+    return of(integer, new Denominator(1));
   }
 
   public static Fraction of(int numerator, int denominator) {
-    if (denominator < 0) {
-      denominator = denominator * -1;
+    return Fraction.of(numerator, new Denominator(denominator));
+  }
+
+  public static Fraction of(int numerator, Denominator denominator) {
+    if (denominator.isNegative()) {
+      denominator = denominator.revert();
       numerator = numerator * -1;
     }
-    final int gcd = GCD.from(numerator, denominator);
-    return new Fraction(numerator / gcd, new Denominator(denominator / gcd));
+    final int gcd = GCD.from(numerator, denominator.value());
+    return new Fraction(numerator / gcd, new Denominator(denominator.value() / gcd));
   }
 
   public Fraction plus(Fraction other) {
