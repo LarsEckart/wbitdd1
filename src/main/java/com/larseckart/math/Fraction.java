@@ -28,18 +28,19 @@ public final class Fraction {
   public Fraction plus(Fraction other) {
     return Fraction.of(
         this.numerator * other.denominator.value() + denominator.value() * other.numerator,
-        new Denominator(denominator.value() * other.denominator.value()));
+        denominator.multiply(other.denominator));
   }
 
   public Fraction minus(Fraction other) {
     return Fraction.of(
         this.numerator * other.denominator.value() - denominator.value() * other.numerator,
-        new Denominator(denominator.value() * other.denominator.value()));
+        denominator.multiply(other.denominator));
   }
 
   public Fraction times(Fraction other) {
-    return Fraction.of(this.numerator * other.numerator, new Denominator(denominator.value()
-        * other.denominator.value()));
+    return Fraction.of(
+        this.numerator * other.numerator,
+        denominator.multiply(other.denominator));
   }
 
   public Fraction divide(Fraction other) {
@@ -71,5 +72,4 @@ public final class Fraction {
   public String toString() {
     return "Fraction " + numerator + "/" + denominator.value();
   }
-
 }

@@ -16,4 +16,8 @@ record Denominator(int value){
     return new Denominator(value * -1);
   }
 
+  Denominator multiply(Denominator other) {
+    return new Denominator(value * other.value);
+  }
+
 }
