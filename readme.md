@@ -7,6 +7,10 @@
 For now, the only way to use this library is by adding the jar file to your project's classpath.
 You can download the jar file [here](releases/Fractions-1.0.0.jar).
 
+## Thoughts
+
+* use long instead of int?!
+
 ## Inbox
 
 ### features
