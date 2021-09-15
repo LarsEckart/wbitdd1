@@ -17,9 +17,6 @@ public final class Fraction {
   }
 
   public static Fraction of(int numerator, int denominator) {
-    if (denominator == 0) {
-      throw new IllegalArgumentException();
-    }
     if (denominator < 0) {
       denominator = denominator * -1;
       numerator = numerator * -1;
