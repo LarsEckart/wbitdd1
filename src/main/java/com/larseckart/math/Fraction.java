@@ -5,11 +5,11 @@ import java.util.Objects;
 public final class Fraction {
 
   private final int numerator;
-  private final int denominator;
+  private final Denominator denominator;
 
   private Fraction(int numerator, int denominator) {
     this.numerator = numerator;
-    this.denominator = denominator;
+    this.denominator = new Denominator(denominator);
   }
 
   public static Fraction from(int integer) {
@@ -75,7 +75,7 @@ public final class Fraction {
     return "Fraction " + numerator + "/" + getDenominator();
   }
 
-  public int getDenominator() {
-    return denominator;
+  private int getDenominator() {
+    return denominator.value();
   }
 }
