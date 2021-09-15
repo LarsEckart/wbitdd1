@@ -30,18 +30,19 @@ public final class Fraction {
 
   public Fraction plus(Fraction other) {
     return Fraction.of(
-        this.numerator * other.denominator + this.denominator * other.numerator,
-        this.denominator * other.denominator);
+        this.numerator * other.getDenominator() + this.getDenominator() * other.numerator,
+        this.getDenominator() * other.getDenominator());
   }
 
   public Fraction minus(Fraction other) {
     return Fraction.of(
-        this.numerator * other.denominator - this.denominator * other.numerator,
-        this.denominator * other.denominator);
+        this.numerator * other.getDenominator() - this.getDenominator() * other.numerator,
+        this.getDenominator() * other.getDenominator());
   }
 
   public Fraction times(Fraction other) {
-    return Fraction.of(this.numerator * other.numerator, this.denominator * other.denominator);
+    return Fraction.of(this.numerator * other.numerator, this.getDenominator()
+        * other.getDenominator());
   }
 
   public Fraction divide(Fraction other) {
@@ -49,7 +50,7 @@ public final class Fraction {
   }
 
   private Fraction reciprocal() {
-    return Fraction.of(this.denominator, this.numerator);
+    return Fraction.of(this.getDenominator(), this.numerator);
   }
 
   @Override
@@ -61,16 +62,20 @@ public final class Fraction {
       return false;
     }
     Fraction fraction = (Fraction) o;
-    return numerator == fraction.numerator && denominator == fraction.denominator;
+    return numerator == fraction.numerator && getDenominator() == fraction.getDenominator();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numerator, denominator);
+    return Objects.hash(numerator, getDenominator());
   }
 
   @Override
   public String toString() {
-    return "Fraction " + numerator + "/" + denominator;
+    return "Fraction " + numerator + "/" + getDenominator();
+  }
+
+  public int getDenominator() {
+    return denominator;
   }
 }
