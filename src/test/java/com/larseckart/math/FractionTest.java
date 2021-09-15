@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Set;
-import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
@@ -21,7 +20,8 @@ class FractionTest {
 
   @Test
   void my_first_test() {
-    assertThat(Fraction.of(7, 3).plus(Fraction.of(4, 5))).isEqualTo(Fraction.of(47, 15));
+    assertThat(Fraction.of(7, new Denominator(3)).plus(Fraction.of(4, new Denominator(5)))).isEqualTo(Fraction.of(47,
+        new Denominator(15)));
   }
 
   @ParameterizedTest
@@ -34,65 +34,74 @@ class FractionTest {
   void equality() {
     assertAll(
         () -> assertThat(Fraction.from(1)).isEqualTo(Fraction.from(1)),
-        () -> assertThat(Fraction.of(1, 1)).isEqualTo(Fraction.from(1)),
-        () -> assertThat(Fraction.of(3, 1)).isEqualTo(Fraction.from(3)));
+        () -> assertThat(Fraction.of(1, new Denominator(1))).isEqualTo(Fraction.from(1)),
+        () -> assertThat(Fraction.of(3, new Denominator(1))).isEqualTo(Fraction.from(3)));
 //    EqualsVerifier.forClass(Fraction.class).verify();
   }
 
   @Test
   void denominator_of_zero_causes_exception() {
-    assertThrows(IllegalArgumentException.class, () -> Fraction.of(1, 0));
+    assertThrows(IllegalArgumentException.class, () -> Fraction.of(1, new Denominator(0)));
   }
 
   @Test
   void fractions_are_always_expressed_at_lowest_term() {
     assertAll(
-        () -> assertThat(Fraction.of(4, 2)).isEqualTo(Fraction.from(2)),
-        () -> assertThat(Fraction.of(2, 4)).isEqualTo(Fraction.of(1, 2)));
+        () -> assertThat(Fraction.of(4, new Denominator(2))).isEqualTo(Fraction.from(2)),
+        () -> assertThat(Fraction.of(2, new Denominator(4))).isEqualTo(Fraction.of(1,
+            new Denominator(2))));
   }
 
   @Test
   void adding_two_fractions_with_same_denominator() {
     assertAll(
-        () -> assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 4))).isEqualTo(Fraction.of(1, 2)),
-        () -> assertThat(Fraction.of(1, 3).plus(Fraction.of(2, 3))).isEqualTo(Fraction.from(1)));
+        () -> assertThat(Fraction.of(1, new Denominator(4)).plus(Fraction.of(1, new Denominator(4)))).isEqualTo(Fraction.of(1,
+            new Denominator(2))),
+        () -> assertThat(Fraction.of(1, new Denominator(3)).plus(Fraction.of(2, new Denominator(3)))).isEqualTo(Fraction.from(1)));
   }
 
   @Test
   void subtracting_two_fractions_with_same_denominator() {
     assertAll(
-        () -> assertThat(Fraction.of(2, 4).minus(Fraction.of(1, 4))).isEqualTo(Fraction.of(1, 4)),
-        () -> assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 3))).isEqualTo(Fraction.of(1, 3)));
+        () -> assertThat(Fraction.of(2, new Denominator(4)).minus(Fraction.of(1, new Denominator(4)))).isEqualTo(Fraction.of(1,
+            new Denominator(4))),
+        () -> assertThat(Fraction.of(2, new Denominator(3)).minus(Fraction.of(1, new Denominator(3)))).isEqualTo(Fraction.of(1,
+            new Denominator(3))));
   }
 
   @Test
   void adding_two_fractions_with_different_denominator() {
     assertAll(
-        () -> assertThat(Fraction.of(1, 4).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(3, 4)),
-        () -> assertThat(Fraction.of(4, 3).plus(Fraction.of(1, 2))).isEqualTo(Fraction.of(11, 6)));
+        () -> assertThat(Fraction.of(1, new Denominator(4)).plus(Fraction.of(1, new Denominator(2)))).isEqualTo(Fraction.of(3,
+            new Denominator(4))),
+        () -> assertThat(Fraction.of(4, new Denominator(3)).plus(Fraction.of(1, new Denominator(2)))).isEqualTo(Fraction.of(11,
+            new Denominator(6))));
   }
 
   @Test
   void subtracting_two_fractions_with_different_denominator() {
-    assertThat(Fraction.of(2, 3).minus(Fraction.of(1, 2))).isEqualTo(Fraction.of(1, 6));
+    assertThat(Fraction.of(2, new Denominator(3)).minus(Fraction.of(1, new Denominator(2)))).isEqualTo(Fraction.of(1,
+        new Denominator(6)));
   }
 
   @Test
   void multiply_two_fractions_with_different_denominator() {
-    assertThat(Fraction.of(2, 3).times(Fraction.of(3, 4))).isEqualTo(Fraction.of(1, 2));
+    assertThat(Fraction.of(2, new Denominator(3)).times(Fraction.of(3, new Denominator(4)))).isEqualTo(Fraction.of(1,
+        new Denominator(2)));
   }
 
   @Test
   void divide_two_fractions_with_different_denominator() {
-    assertThat(Fraction.of(1, 2).divide(Fraction.of(3, 4))).isEqualTo(Fraction.of(2, 3));
+    assertThat(Fraction.of(1, new Denominator(2)).divide(Fraction.of(3, new Denominator(4)))).isEqualTo(Fraction.of(2,
+        new Denominator(3)));
   }
 
   @Test
   void negative_fractions_equality() {
     assertAll(
-        () -> assertThat(Fraction.of(-1, 1)).isEqualTo(Fraction.from(-1)),
-        () -> assertThat(Fraction.of(1, -1)).isEqualTo(Fraction.from(-1)),
-        () -> assertThat(Fraction.of(-1, -1)).isEqualTo(Fraction.from(1)));
+        () -> assertThat(Fraction.of(-1, new Denominator(1))).isEqualTo(Fraction.from(-1)),
+        () -> assertThat(Fraction.of(1, new Denominator(-1))).isEqualTo(Fraction.from(-1)),
+        () -> assertThat(Fraction.of(-1, new Denominator(-1))).isEqualTo(Fraction.from(1)));
   }
 
   @Nested

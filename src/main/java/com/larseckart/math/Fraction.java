@@ -16,10 +16,6 @@ public final class Fraction {
     return of(integer, new Denominator(1));
   }
 
-  public static Fraction of(int numerator, int denominator) {
-    return Fraction.of(numerator, new Denominator(denominator));
-  }
-
   public static Fraction of(int numerator, Denominator denominator) {
     if (denominator.isNegative()) {
       denominator = denominator.revert();
@@ -32,18 +28,18 @@ public final class Fraction {
   public Fraction plus(Fraction other) {
     return Fraction.of(
         this.numerator * other.denominator.value() + denominator.value() * other.numerator,
-        denominator.value() * other.denominator.value());
+        new Denominator(denominator.value() * other.denominator.value()));
   }
 
   public Fraction minus(Fraction other) {
     return Fraction.of(
         this.numerator * other.denominator.value() - denominator.value() * other.numerator,
-        denominator.value() * other.denominator.value());
+        new Denominator(denominator.value() * other.denominator.value()));
   }
 
   public Fraction times(Fraction other) {
-    return Fraction.of(this.numerator * other.numerator, denominator.value()
-        * other.denominator.value());
+    return Fraction.of(this.numerator * other.numerator, new Denominator(denominator.value()
+        * other.denominator.value()));
   }
 
   public Fraction divide(Fraction other) {
@@ -51,7 +47,7 @@ public final class Fraction {
   }
 
   private Fraction reciprocal() {
-    return Fraction.of(denominator.value(), this.numerator);
+    return Fraction.of(denominator.value(), new Denominator(this.numerator));
   }
 
   @Override
