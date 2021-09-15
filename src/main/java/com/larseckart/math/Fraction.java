@@ -30,19 +30,19 @@ public final class Fraction {
 
   public Fraction plus(Fraction other) {
     return Fraction.of(
-        this.numerator * other.getDenominator() + this.getDenominator() * other.numerator,
-        this.getDenominator() * other.getDenominator());
+        this.numerator * other.denominator.value() + denominator.value() * other.numerator,
+        denominator.value() * other.denominator.value());
   }
 
   public Fraction minus(Fraction other) {
     return Fraction.of(
-        this.numerator * other.getDenominator() - this.getDenominator() * other.numerator,
-        this.getDenominator() * other.getDenominator());
+        this.numerator * other.denominator.value() - denominator.value() * other.numerator,
+        denominator.value() * other.denominator.value());
   }
 
   public Fraction times(Fraction other) {
-    return Fraction.of(this.numerator * other.numerator, this.getDenominator()
-        * other.getDenominator());
+    return Fraction.of(this.numerator * other.numerator, denominator.value()
+        * other.denominator.value());
   }
 
   public Fraction divide(Fraction other) {
@@ -50,7 +50,7 @@ public final class Fraction {
   }
 
   private Fraction reciprocal() {
-    return Fraction.of(this.getDenominator(), this.numerator);
+    return Fraction.of(denominator.value(), this.numerator);
   }
 
   @Override
@@ -62,20 +62,17 @@ public final class Fraction {
       return false;
     }
     Fraction fraction = (Fraction) o;
-    return numerator == fraction.numerator && getDenominator() == fraction.getDenominator();
+    return numerator == fraction.numerator && denominator.value() == fraction.denominator.value();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numerator, getDenominator());
+    return Objects.hash(numerator, denominator.value());
   }
 
   @Override
   public String toString() {
-    return "Fraction " + numerator + "/" + getDenominator();
+    return "Fraction " + numerator + "/" + denominator.value();
   }
 
-  private int getDenominator() {
-    return denominator.value();
-  }
 }
