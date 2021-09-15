@@ -8,4 +8,9 @@ record Denominator(int value){
     }
     this.value = value;
   }
+
+  boolean isNegative(){
+    return this.value <0;
+  }
+
 }

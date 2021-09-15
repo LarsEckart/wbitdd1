@@ -7,9 +7,9 @@ public final class Fraction {
   private final int numerator;
   private final Denominator denominator;
 
-  private Fraction(int numerator, int denominator) {
+  private Fraction(int numerator, Denominator denominator) {
     this.numerator = numerator;
-    this.denominator = new Denominator(denominator);
+    this.denominator = denominator;
   }
 
   public static Fraction from(int integer) {
@@ -22,7 +22,7 @@ public final class Fraction {
       numerator = numerator * -1;
     }
     final int gcd = GCD.from(numerator, denominator);
-    return new Fraction(numerator / gcd, denominator / gcd);
+    return new Fraction(numerator / gcd, new Denominator(denominator / gcd));
   }
 
   public Fraction plus(Fraction other) {
