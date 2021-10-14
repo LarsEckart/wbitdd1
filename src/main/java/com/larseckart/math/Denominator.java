@@ -8,6 +8,10 @@ record Denominator(int value) {
     }
   }
 
+  Denominator divideBy(int gcd) {
+    return new Denominator(value() / gcd);
+  }
+
   boolean isNegative() {
     return this.value < 0;
   }

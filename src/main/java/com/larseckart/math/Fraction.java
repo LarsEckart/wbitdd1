@@ -22,7 +22,7 @@ public final class Fraction {
       numerator = numerator * -1;
     }
     final int gcd = GCD.from(numerator, denominator.value());
-    return new Fraction(numerator / gcd, new Denominator(denominator.value() / gcd));
+    return new Fraction(numerator / gcd, denominator.divideBy(gcd));
   }
 
   public Fraction plus(Fraction other) {
