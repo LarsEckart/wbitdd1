@@ -10,6 +10,7 @@ You can download the jar file [here](releases/Fractions-1.0.0.jar).
 ## Thoughts
 
 * use long instead of int?!
+* should numerator now also be a proper type and have a divideBy function like Denominator?
 
 ## Inbox
 
