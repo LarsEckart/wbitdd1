@@ -85,11 +85,11 @@ public class SellOneItemTest {
   static class Sale {
 
     private Display display;
-    private Map<String, String> pricesByBarcode;
+    private final Catalog catalog;
 
     Sale(Display display, Catalog catalog) {
       this.display = display;
-      this.pricesByBarcode = catalog.pricesByBarcode();
+      this.catalog = catalog;
     }
 
     public void onBarcode(String barcode) {
@@ -99,16 +99,12 @@ public class SellOneItemTest {
         return;
       }
 
-      String priceAsText = findPrice(barcode);
+      String priceAsText = catalog.findPrice(barcode);
       if (priceAsText == null) {
         display.displayProductNotFoundMessage(barcode);
       } else {
         display.displayPrice(priceAsText);
       }
-    }
-
-    private String findPrice(String barcode) {
-      return pricesByBarcode.get(barcode);
     }
 
   }
