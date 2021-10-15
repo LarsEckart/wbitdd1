@@ -77,6 +77,7 @@ public class SellOneItemTest {
     }
 
     public void onBarcode(String barcode) {
+      // SMELL: refused bequest; move up the call stack?
       if ("".equals(barcode)) {
         display.setText("Scanning error: empty barcode");
         return;
