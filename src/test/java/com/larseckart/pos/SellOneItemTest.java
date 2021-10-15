@@ -33,7 +33,7 @@ public class SellOneItemTest {
   }
 
   @Test
-  void roductNotFound() {
+  void productNotFound() {
     Display display = new Display();
     Sale sale = new Sale(display);
 
