@@ -69,16 +69,17 @@ public class SellOneItemTest {
   static class Sale {
 
     private Display display;
+    private Map<String, String> pricesByBarcode;
 
     Sale(Display display) {
       this.display = display;
+      this.pricesByBarcode = Map.of("12345", "$7.95", "23456", "$12.50");
     }
 
     public void onBarcode(String barcode) {
       if ("".equals(barcode)) {
         display.setText("Scanning error: empty barcode");
       } else {
-        Map<String, String> pricesByBarcode = Map.of("12345", "$7.95", "23456", "$12.50");
         if (pricesByBarcode.containsKey(barcode)) {
           display.setText(pricesByBarcode.get(barcode));
         } else {
