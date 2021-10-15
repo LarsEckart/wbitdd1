@@ -3,6 +3,7 @@ package com.larseckart.pos;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -77,8 +78,9 @@ public class SellOneItemTest {
       if ("".equals(barcode)) {
         display.setText("Scanning error: empty barcode");
       } else {
+        Map<String, String> pricesByBarcode = Map.of("12345", "$7.95");
         if ("12345".equals(barcode)) {
-          display.setText("$7.95");
+          display.setText(pricesByBarcode.get(barcode));
         } else if ("23456".equals(barcode)) {
           display.setText("$12.50");
         } else {
