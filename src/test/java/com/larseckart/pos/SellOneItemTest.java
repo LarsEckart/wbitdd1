@@ -16,7 +16,7 @@ public class SellOneItemTest {
   @Test
   void productFound() {
     Display display = new Display();
-    Sale sale = new Sale();
+    Sale sale = new Sale(display);
 
     sale.onBarcode("12345");
 
@@ -27,7 +27,7 @@ public class SellOneItemTest {
   @Disabled
   void anotherProductFound() {
     Display display = new Display();
-    Sale sale = new Sale();
+    Sale sale = new Sale(display);
 
     sale.onBarcode("23456");
 
@@ -36,13 +36,27 @@ public class SellOneItemTest {
 
   static class Display {
 
+    private String text;
+
     public String getText() {
-      return "$7.95";
+      return text;
+    }
+
+    public void setText(String text) {
+      this.text = text;
     }
   }
 
   static class Sale {
 
-    public void onBarcode(String barcode) {}
+    private Display display;
+
+    Sale(Display display) {
+      this.display = display;
+    }
+
+    public void onBarcode(String barcode) {
+      display.setText("$7.95");
+    }
   }
 }
