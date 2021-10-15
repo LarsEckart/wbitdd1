@@ -65,6 +65,7 @@ public class SellOneItemTest {
       return text;
     }
 
+    // SMELL: we say we display Price but we display a String
     public void displayPrice(String priceAsText) {
       this.text = priceAsText;
     }
