@@ -33,6 +33,16 @@ public class SellOneItemTest {
   }
 
   @Test
+  void emptyBarcode() {
+    Display display = new Display();
+    Sale sale = new Sale(display);
+
+    sale.onBarcode("");
+
+    assertThat("Scanning error: empty barcode").isEqualTo(display.getText());
+  }
+
+  @Test
   void productNotFound() {
     Display display = new Display();
     Sale sale = new Sale(display);
@@ -64,13 +74,16 @@ public class SellOneItemTest {
     }
 
     public void onBarcode(String barcode) {
-      if ("12345".equals(barcode)) {
-        display.setText("$7.95");
-      } else if ("23456".equals(barcode)) {
-        display.setText("$12.50");
+      if ("".equals(barcode)) {
+        display.setText("Scanning error: empty barcode");
       } else {
-        display.setText("Product not found for "
-            + barcode);
+        if ("12345".equals(barcode)) {
+          display.setText("$7.95");
+        } else if ("23456".equals(barcode)) {
+          display.setText("$12.50");
+        } else {
+          display.setText("Product not found for " + barcode);
+        }
       }
     }
   }
