@@ -3,7 +3,6 @@ package com.larseckart.pos;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -57,8 +56,9 @@ public class SellOneItemTest {
     public void onBarcode(String barcode) {
       if ("12345".equals(barcode)) {
         display.setText("$7.95");
-      } else
+      } else if ("23456".equals(barcode)) {
         display.setText("$12.50");
+      }
     }
   }
 }
