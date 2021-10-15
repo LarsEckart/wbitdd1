@@ -3,7 +3,9 @@ package com.larseckart.pos;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
+import java.util.Collections;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -13,11 +15,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(FastTestCommitRevertMainExtension.class)
 public class SellOneItemTest {
 
+  private Display display;
+  private Sale sale;
+
+  @BeforeEach
+  void setUp() {
+    display = new Display();
+    sale = new Sale(display, Map.of("12345", "$7.95", "23456", "$12.50"));
+  }
+
   @Test
   void productFound() {
-    Display display = new Display();
-    Sale sale = new Sale(display, Map.of("12345", "$7.95", "23456", "$12.50"));
-
     sale.onBarcode("12345");
 
     assertThat("$7.95").isEqualTo(display.getText());
@@ -25,9 +33,6 @@ public class SellOneItemTest {
 
   @Test
   void anotherProductFound() {
-    Display display = new Display();
-    Sale sale = new Sale(display, Map.of("12345", "$7.95", "23456", "$12.50"));
-
     sale.onBarcode("23456");
 
     assertThat("$12.50").isEqualTo(display.getText());
@@ -35,8 +40,7 @@ public class SellOneItemTest {
 
   @Test
   void emptyBarcode() {
-    Display display = new Display();
-    Sale sale = new Sale(display, Map.of("12345", "$7.95", "23456", "$12.50"));
+    Sale sale = new Sale(display, Collections.emptyMap());
 
     sale.onBarcode("");
 
