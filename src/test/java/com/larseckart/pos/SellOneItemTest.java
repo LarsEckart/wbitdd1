@@ -84,7 +84,7 @@ public class SellOneItemTest {
 
   static class Sale {
 
-    private Display display;
+    private final Display display;
     private final Catalog catalog;
 
     Sale(Display display, Catalog catalog) {
