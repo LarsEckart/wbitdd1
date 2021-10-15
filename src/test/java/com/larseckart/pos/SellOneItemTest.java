@@ -88,14 +88,14 @@ public class SellOneItemTest {
       }
 
       if (pricesByBarcode.containsKey(barcode)) {
-        findPriceThenDisplayPrice(barcode);
+        String priceAsText = pricesByBarcode.get(barcode);
+        displayPrice(priceAsText);
       } else {
         displayProductNotFoundMessage(barcode);
       }
     }
 
-    private void findPriceThenDisplayPrice(String barcode) {
-      String priceAsText = pricesByBarcode.get(barcode);
+    private void displayPrice(String priceAsText) {
       display.setText(priceAsText);
     }
 
