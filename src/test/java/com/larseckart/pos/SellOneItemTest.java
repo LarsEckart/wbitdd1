@@ -79,10 +79,8 @@ public class SellOneItemTest {
         display.setText("Scanning error: empty barcode");
       } else {
         Map<String, String> pricesByBarcode = Map.of("12345", "$7.95", "23456", "$12.50");
-        if ("12345".equals(barcode) || "23456".equals(barcode)) {
+        if (pricesByBarcode.containsKey(barcode)) {
           display.setText(pricesByBarcode.get(barcode));
-        } else if ("23456".equals(barcode)) {
-          display.setText("$12.50");
         } else {
           display.setText("Product not found for " + barcode);
         }
