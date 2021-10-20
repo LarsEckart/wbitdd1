@@ -8,12 +8,16 @@ class Display {
     return String.format("$%,.2f", priceInCents / 100.0d);
   }
 
+  public void displayPrice(Integer priceInCents) {
+    displayText(format(priceInCents));
+  }
+
   public String getText() {
     return text;
   }
 
   // SMELL: we say we display Price but we display a String
-  public void displayPrice(String priceAsText) {
+  public void displayText(String priceAsText) {
     this.text = priceAsText;
   }
 
