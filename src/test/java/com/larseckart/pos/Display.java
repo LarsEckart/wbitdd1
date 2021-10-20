@@ -4,12 +4,12 @@ class Display {
 
   private String text;
 
-  public static String format(int priceInCents) {
+  public static String formatMonetaryAmount(int priceInCents) {
     return String.format("$%,.2f", priceInCents / 100.0d);
   }
 
   public void displayPrice(Integer priceInCents) {
-    this.text = format(priceInCents);
+    this.text = formatMonetaryAmount(priceInCents);
   }
 
   public String getText() {
@@ -29,6 +29,6 @@ class Display {
   }
 
   public void displayPurchaseTotal(Integer priceInCents) {
-    this.text = "Total: " + format(priceInCents);
+    this.text = "Total: " + formatMonetaryAmount(priceInCents);
   }
 }
