@@ -25,12 +25,14 @@ class Sale {
     if (priceInCents == null) {
       display.displayProductNotFoundMessage(barcode);
     } else {
+      // REFACTOR: is this a shopping cart?
       pendingPurchaseItemPrices.add(priceInCents);
       display.displayPrice(priceInCents);
     }
   }
 
   public void onTotal() {
+    // SMELL: looks like model behaviour
     boolean saleInProgress = !pendingPurchaseItemPrices.isEmpty();
     if (saleInProgress) {
       display.displayPurchaseTotal(pendingPurchaseTotal());
