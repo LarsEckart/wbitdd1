@@ -18,7 +18,11 @@ public class SellOneItemTest {
   @BeforeEach
   void setUp() {
     display = new Display();
-    sale = new Sale(display, new Catalog(Map.of("12345", "$7.95", "23456", "$12.50")));
+    sale =
+        new Sale(
+            display,
+            new Catalog(
+                Map.of("12345", "$7.95", "23456", "$12.50"), Map.of("12345", 795, "23456", 1250)));
   }
 
   @Test
@@ -37,7 +41,7 @@ public class SellOneItemTest {
 
   @Test
   void emptyBarcode() {
-    Sale sale = new Sale(display, new Catalog(Collections.emptyMap()));
+    Sale sale = new Sale(display, new Catalog(Collections.emptyMap(), Collections.emptyMap()));
 
     sale.onBarcode("");
 
@@ -47,7 +51,11 @@ public class SellOneItemTest {
   @Test
   void productNotFound() {
     Display display = new Display();
-    Sale sale = new Sale(display, new Catalog(Map.of("12345", "$7.95", "23456", "$12.50")));
+    Sale sale =
+        new Sale(
+            display,
+            new Catalog(
+                Map.of("12345", "$7.95", "23456", "$12.50"), Map.of("12345", 795, "23456", 1250)));
 
     sale.onBarcode("99999");
 
