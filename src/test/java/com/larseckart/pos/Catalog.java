@@ -4,15 +4,21 @@ import java.util.Map;
 
 public final class Catalog {
 
-  private Map<String, String> pricesAsTextByBarcode;
-  private Map<String, Integer> pricesInCentsByBarcode;
+  private final Map<String, Integer> pricesInCentsByBarcode;
 
-  public Catalog(Map<String, String> pricesAsTextByBarcode, Map<String, Integer> pricesInCentsByBarcode) {
-    this.pricesAsTextByBarcode = pricesAsTextByBarcode;
+  public Catalog(Map<String, Integer> pricesInCentsByBarcode) {
     this.pricesInCentsByBarcode = pricesInCentsByBarcode;
   }
 
+  public static String format(int priceInCents) {
+    return String.format("$%,.2f", priceInCents / 100.0d);
+  }
+
   public String findPriceThenFormatPrice(String barcode) {
-    return pricesAsTextByBarcode.get(barcode);
+    Integer priceInCents = pricesInCentsByBarcode.get(barcode);
+    if (priceInCents == null) {
+      return null;
+    }
+    return format(priceInCents);
   }
 }

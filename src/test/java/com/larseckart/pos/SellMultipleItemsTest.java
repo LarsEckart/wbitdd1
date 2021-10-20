@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-
+@ExtendWith(FastTestCommitRevertMainExtension.class)
 public class SellMultipleItemsTest {
 
   @Test
   void zeroItems() {
     Display display = new Display();
-    Sale sale = new Sale(display, new Catalog(Collections.emptyMap(),Collections.emptyMap()));
+    Sale sale = new Sale(display, new Catalog(Collections.emptyMap()));
 
     sale.onTotal();
 
@@ -28,7 +28,7 @@ public class SellMultipleItemsTest {
   @Test
   void oneItemFound() {
     Display display = new Display();
-    Catalog catalog = new Catalog(Map.of("12345", "$6.50"), Map.of("12345", 650));
+    Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
     sale.onBarcode("12345");
@@ -40,7 +40,7 @@ public class SellMultipleItemsTest {
   @Test
   void noItemFound() {
     Display display = new Display();
-    Catalog catalog = new Catalog(Map.of("12345", "$6.50"), Map.of("12345", 650));
+    Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
     sale.onBarcode("99999");
@@ -55,10 +55,6 @@ public class SellMultipleItemsTest {
     Display display = new Display();
     Catalog catalog =
         new Catalog(
-            Map.of(
-                "1", "$8.50",
-                "2", "$12.75",
-                "3", "$3.30"),
             Map.of(
                 "1", 850,
                 "2", 1275,
