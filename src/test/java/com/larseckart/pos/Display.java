@@ -2,23 +2,18 @@ package com.larseckart.pos;
 
 class Display {
 
-  public String text;
+  private String text;
 
   public static String format(int priceInCents) {
     return String.format("$%,.2f", priceInCents / 100.0d);
   }
 
   public void displayPrice(Integer priceInCents) {
-    displayText(format(priceInCents));
+    this.text = format(priceInCents);
   }
 
   public String getText() {
     return text;
-  }
-
-  // SMELL: we say we display Price but we display a String
-  public void displayText(String priceAsText) {
-    this.text = priceAsText;
   }
 
   public void displayProductNotFoundMessage(String barcode) {
