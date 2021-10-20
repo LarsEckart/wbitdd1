@@ -33,9 +33,14 @@ class Sale {
   public void onTotal() {
     boolean saleInProgress = !pendingPurchaseItemPrices.isEmpty();
     if (saleInProgress) {
-      display.displayPurchaseTotal(Display.format(pendingPurchaseItemPrices.iterator().next()));
+      display.displayPurchaseTotal(pendingPurchaseTotal());
     } else {
       display.displayNoSaleInProgressMessage();
     }
+  }
+
+  // SMELL: looks like model behaviour
+  private Integer pendingPurchaseTotal() {
+    return pendingPurchaseItemPrices.iterator().next();
   }
 }

@@ -33,7 +33,7 @@ class Display {
     this.text = "No sale in progress. Try scanning a product.";
   }
 
-  public void displayPurchaseTotal(String price) {
-    this.text = "Total: " + price;
+  public void displayPurchaseTotal(Integer priceInCents) {
+    this.text = "Total: " + format(priceInCents);
   }
 }
