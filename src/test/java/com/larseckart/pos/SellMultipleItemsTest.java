@@ -30,10 +30,22 @@ public class SellMultipleItemsTest {
     Display display = new Display();
     Catalog catalog = new Catalog(Map.of("12345", "$6.50"));
     Sale sale = new Sale(display, catalog);
+    
     sale.onBarcode("12345");
-
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $6.50");
+  }
+
+  @Test
+  void noItemFound() {
+    Display display = new Display();
+    Catalog catalog = new Catalog(Map.of("12345", "$6.50"));
+    Sale sale = new Sale(display, catalog);
+
+    sale.onBarcode("99999");
+    sale.onTotal();
+
+    assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
   }
 }
