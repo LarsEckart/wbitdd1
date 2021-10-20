@@ -22,12 +22,8 @@ class Sale {
     if (scannedPrice == null) {
       display.displayProductNotFoundMessage(barcode);
     } else {
-      display.displayPrice(formatPrice(scannedPrice));
+      display.displayPrice(scannedPrice);
     }
-  }
-
-  private String formatPrice(String scannedPrice) {
-    return scannedPrice;
   }
 
   public void onTotal() {
