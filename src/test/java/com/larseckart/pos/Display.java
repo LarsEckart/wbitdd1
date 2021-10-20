@@ -4,6 +4,10 @@ class Display {
 
   public String text;
 
+  public static String format(int priceInCents) {
+    return String.format("$%,.2f", priceInCents / 100.0d);
+  }
+
   public String getText() {
     return text;
   }

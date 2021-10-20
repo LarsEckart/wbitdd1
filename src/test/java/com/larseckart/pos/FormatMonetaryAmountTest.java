@@ -24,6 +24,6 @@ public class FormatMonetaryAmountTest {
   @MethodSource("arguments")
   @CsvSource({"789, $7.89, " + "520, $5.20"})
   void test(Integer priceInCents, String formattedPrice) {
-    assertThat(formattedPrice).isEqualTo(Catalog.format(priceInCents));
+    assertThat(formattedPrice).isEqualTo(Display.format(priceInCents));
   }
 }
