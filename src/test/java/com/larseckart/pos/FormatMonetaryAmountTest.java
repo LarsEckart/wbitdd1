@@ -11,7 +11,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class FormatMonetaryAmountTest {
 
   @ParameterizedTest(name = "{0} -> {1}")
-  @CsvSource({"789, $7.89, 520, $5.20"})
+  @CsvSource({"""
+      789, $7.89,
+      520, $5.20"""})
   void test(Integer priceInCents, String formattedPrice) {
     assertThat(formattedPrice).isEqualTo(format(priceInCents));
   }
