@@ -16,7 +16,7 @@ public final class Catalog {
     this.pricesInCentsByBarcode = pricesInCentsByBarcode;
   }
 
-  String findPrice(String barcode) {
+  public String findPrice(String barcode) {
     return pricesByBarcode.get(barcode);
   }
 }
