@@ -1,10 +1,13 @@
 package com.larseckart.pos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 class Sale {
 
   private final Display display;
   private final Catalog catalog;
-  private String scannedPrice;
+  private Collection<Integer> pendingPurchaseItemPrices = new ArrayList<>();
 
   Sale(Display display, Catalog catalog) {
     this.display = display;
@@ -22,15 +25,15 @@ class Sale {
     if (priceInCents == null) {
       display.displayProductNotFoundMessage(barcode);
     } else {
-      scannedPrice = Display.format(priceInCents);
+      pendingPurchaseItemPrices.add(priceInCents);
       display.displayPrice(priceInCents);
     }
   }
 
   public void onTotal() {
-    boolean saleInProgress = scannedPrice != null;
+    boolean saleInProgress = !pendingPurchaseItemPrices.isEmpty();
     if (saleInProgress) {
-      display.displayPurchaseTotal(scannedPrice);
+      display.displayPurchaseTotal(Display.format(pendingPurchaseItemPrices.iterator().next()));
     } else {
       display.displayNoSaleInProgressMessage();
     }
