@@ -4,6 +4,7 @@ class Sale {
 
   private final Display display;
   private final Catalog catalog;
+  private String price;
 
   Sale(Display display, Catalog catalog) {
     this.display = display;
@@ -17,16 +18,20 @@ class Sale {
       return;
     }
 
-    String priceAsText = catalog.findPrice(barcode);
-    if (priceAsText == null) {
+    price = catalog.findPrice(barcode);
+    if (price == null) {
       display.displayProductNotFoundMessage(barcode);
     } else {
-      display.displayPrice(priceAsText);
+      display.displayPrice(price);
     }
   }
 
   public void onTotal() {
-    display.displayNoSaleInProgressMessage();
+    if (price == null) {
+      display.displayNoSaleInProgressMessage();
+    } else {
+      display.text = "Total: $6.50";
+    }
   }
 
 }

@@ -2,7 +2,7 @@ package com.larseckart.pos;
 
 class Display {
 
-  private String text;
+  public String text;
 
   public String getText() {
     return text;
