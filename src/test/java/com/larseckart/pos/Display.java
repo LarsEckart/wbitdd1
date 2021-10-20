@@ -8,12 +8,12 @@ class Display {
     return String.format("$%,.2f", priceInCents / 100.0d);
   }
 
-  public void displayPrice(Integer priceInCents) {
-    this.text = formatMonetaryAmount(priceInCents);
-  }
-
   public String getText() {
     return text;
+  }
+
+  public void displayPrice(Integer priceInCents) {
+    this.text = formatMonetaryAmount(priceInCents);
   }
 
   public void displayProductNotFoundMessage(String barcode) {
