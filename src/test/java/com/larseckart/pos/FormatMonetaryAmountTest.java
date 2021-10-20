@@ -13,7 +13,12 @@ public class FormatMonetaryAmountTest {
   @ParameterizedTest(name = "{0} -> {1}")
   @CsvSource({"""
       789, $7.89,
-      520, $5.20"""})
+      520, $5.20,
+      400, $4.00,
+      0, $0.00,
+      2, $0.02,
+      37, $0.37,
+      """})
   void test(Integer priceInCents, String formattedPrice) {
     assertThat(formattedPrice).isEqualTo(format(priceInCents));
   }
