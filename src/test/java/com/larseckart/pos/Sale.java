@@ -43,6 +43,10 @@ class Sale {
 
   // SMELL: looks like model behaviour
   private Integer pendingPurchaseTotal() {
+    return sum(pendingPurchaseItemPrices);
+  }
+
+  public static Integer sum(Collection<Integer> pendingPurchaseItemPrices) {
     return pendingPurchaseItemPrices.iterator().next();
   }
 }
