@@ -93,4 +93,22 @@ public class SellMultipleItemsTest {
 
     assertThat(display.getText()).isEqualTo("Total: $24.55");
   }
+
+  @Test
+  void several_items_found_some_not() {
+    Display display = new Display();
+    Catalog catalog =
+        new Catalog(
+            Map.of(
+                "1", 1200,
+                "2", 500));
+    Sale sale = new Sale(display, catalog);
+
+    sale.onBarcode("1");
+    sale.onBarcode("you don't know this product");
+    sale.onBarcode("2");
+    sale.onTotal();
+
+    assertThat(display.getText()).isEqualTo("Total: $17.00");
+  }
 }
