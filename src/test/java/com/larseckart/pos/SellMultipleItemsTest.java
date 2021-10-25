@@ -49,6 +49,20 @@ public class SellMultipleItemsTest {
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
   }
 
+  @Test
+  void severalItemsNotFound() {
+    Display display = new Display();
+    Catalog catalog = new Catalog(Collections.emptyMap());
+    Sale sale = new Sale(display, catalog);
+
+    sale.onBarcode("product you won't find");
+    sale.onBarcode("another product you won't find");
+    sale.onBarcode("a third product you won't find");
+    sale.onTotal();
+
+    assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
+  }
+
   @Disabled("make the change easy, then make the easy change")
   @Test
   void several_items_found() {
