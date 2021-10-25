@@ -75,7 +75,6 @@ public class SellMultipleItemsTest {
     return new Catalog(Collections.emptyMap());
   }
 
-  @Disabled("make the change easy, then make the easy change")
   @Test
   void several_items_found() {
     Display display = new Display();
