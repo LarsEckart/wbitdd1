@@ -18,7 +18,7 @@ public class SellMultipleItemsTest {
   @Test
   void zeroItems() {
     Display display = new Display();
-    Sale sale = new Sale(display, new Catalog(Collections.emptyMap()));
+    Sale sale = new Sale(display, emptyCatalog());
 
     sale.onTotal();
 
@@ -52,7 +52,11 @@ public class SellMultipleItemsTest {
   @Test
   void severalItemsNotFound() {
     Display display = new Display();
-    Catalog catalog = new Catalog(Collections.emptyMap());
+    Catalog catalog =
+        catalogWithoutBarcodes(
+            "product you won't find",
+            "another product you won't find",
+            "a third product you won't find");
     Sale sale = new Sale(display, catalog);
 
     sale.onBarcode("product you won't find");
@@ -61,6 +65,14 @@ public class SellMultipleItemsTest {
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
+  }
+
+  private Catalog catalogWithoutBarcodes(String... barcodes) {
+    return emptyCatalog();
+  }
+
+  private Catalog emptyCatalog() {
+    return new Catalog(Collections.emptyMap());
   }
 
   @Disabled("make the change easy, then make the easy change")
