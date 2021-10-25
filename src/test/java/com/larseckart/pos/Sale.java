@@ -43,10 +43,14 @@ class Sale {
 
   // SMELL: looks like model behaviour
   private Integer pendingPurchaseTotal() {
-    return sum(pendingPurchaseItemPrices);
+    return computePurchaseTotal(pendingPurchaseItemPrices);
   }
 
-  public static Integer sum(Collection<Integer> pendingPurchaseItemPrices) {
-    return pendingPurchaseItemPrices.iterator().next();
+  public static Integer computePurchaseTotal(Collection<Integer> pendingPurchaseItemPrices) {
+    if (pendingPurchaseItemPrices.isEmpty()) {
+      return 0;
+    } else if (pendingPurchaseItemPrices.size() == 1) {
+      return pendingPurchaseItemPrices.iterator().next();
+    } else return pendingPurchaseItemPrices.stream().mapToInt(i -> i).sum();
   }
 }
