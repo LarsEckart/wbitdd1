@@ -7,7 +7,7 @@ class Sale {
 
   private final Display display;
   private final Catalog catalog;
-  private Collection<Integer> pendingPurchaseItemPrices = new ArrayList<>();
+  private final Collection<Integer> pendingPurchaseItemPrices = new ArrayList<>();
 
   Sale(Display display, Catalog catalog) {
     this.display = display;
