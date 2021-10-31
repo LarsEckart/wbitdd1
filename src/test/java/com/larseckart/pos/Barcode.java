@@ -6,8 +6,15 @@ public final class Barcode {
 
   private final String barcode;
 
-  public Barcode(String barcode) {
+  private Barcode(String barcode) {
     this.barcode = barcode;
+  }
+
+  public static Barcode from(String barcode) {
+    if ("".equals(barcode)) {
+      throw new IllegalArgumentException("Barcode cannot be empty");
+    }
+    return new Barcode(barcode);
   }
 
   public String barcode() {

@@ -14,16 +14,10 @@ class Sale {
     this.catalog = catalog;
   }
 
-  public void onBarcode(Barcode barcode1) {
-    // SMELL: refused bequest; move up the call stack?
-    if ("".equals(barcode1.barcode())) {
-      display.displayEmptyBarcodeMessage();
-      return;
-    }
-
-    Integer priceInCents = catalog.findPrice(barcode1.barcode());
+  public void onBarcode(Barcode barcode) {
+    Integer priceInCents = catalog.findPrice(barcode.barcode());
     if (priceInCents == null) {
-      display.displayProductNotFoundMessage(barcode1.barcode());
+      display.displayProductNotFoundMessage(barcode.barcode());
     } else {
       // REFACTOR: is this a shopping cart?
       pendingPurchaseItemPrices.add(priceInCents);
@@ -52,5 +46,9 @@ class Sale {
     } else if (pendingPurchaseItemPrices.size() == 1) {
       return pendingPurchaseItemPrices.iterator().next();
     } else return pendingPurchaseItemPrices.stream().mapToInt(i -> i).sum();
+  }
+
+  public void onBarcodeError() {
+    display.displayEmptyBarcodeMessage();
   }
 }
