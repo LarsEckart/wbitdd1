@@ -14,16 +14,16 @@ class Sale {
     this.catalog = catalog;
   }
 
-  public void onBarcode(String barcode) {
+  public void onBarcode(Barcode barcode1) {
     // SMELL: refused bequest; move up the call stack?
-    if ("".equals(barcode)) {
+    if ("".equals(barcode1.barcode())) {
       display.displayEmptyBarcodeMessage();
       return;
     }
 
-    Integer priceInCents = catalog.findPrice(barcode);
+    Integer priceInCents = catalog.findPrice(barcode1.barcode());
     if (priceInCents == null) {
-      display.displayProductNotFoundMessage(barcode);
+      display.displayProductNotFoundMessage(barcode1.barcode());
     } else {
       // REFACTOR: is this a shopping cart?
       pendingPurchaseItemPrices.add(priceInCents);

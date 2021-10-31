@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.github.larseckart.tcr.FastTestCommitRevertMainExtension;
 import java.util.Collections;
 import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,7 @@ public class SellMultipleItemsTest {
     Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode("12345");
+    sale.onBarcode(new Barcode("12345"));
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $6.50");
@@ -43,7 +42,7 @@ public class SellMultipleItemsTest {
     Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode("99999");
+    sale.onBarcode(new Barcode("99999"));
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
@@ -59,9 +58,9 @@ public class SellMultipleItemsTest {
             "a third product you won't find");
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode("product you won't find");
-    sale.onBarcode("another product you won't find");
-    sale.onBarcode("a third product you won't find");
+    sale.onBarcode(new Barcode("product you won't find"));
+    sale.onBarcode(new Barcode("another product you won't find"));
+    sale.onBarcode(new Barcode("a third product you won't find"));
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
@@ -86,9 +85,9 @@ public class SellMultipleItemsTest {
                 "3", 330));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode("1");
-    sale.onBarcode("2");
-    sale.onBarcode("3");
+    sale.onBarcode(new Barcode("1"));
+    sale.onBarcode(new Barcode("2"));
+    sale.onBarcode(new Barcode("3"));
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $24.55");
@@ -104,9 +103,9 @@ public class SellMultipleItemsTest {
                 "2", 500));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode("1");
-    sale.onBarcode("you don't know this product");
-    sale.onBarcode("2");
+    sale.onBarcode(new Barcode("1"));
+    sale.onBarcode(new Barcode("you don't know this product"));
+    sale.onBarcode(new Barcode("2"));
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $17.00");

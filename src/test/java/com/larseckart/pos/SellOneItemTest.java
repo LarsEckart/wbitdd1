@@ -23,14 +23,14 @@ public class SellOneItemTest {
 
   @Test
   void productFound() {
-    sale.onBarcode("12345");
+    sale.onBarcode(new Barcode("12345"));
 
     assertThat("$7.95").isEqualTo(display.getText());
   }
 
   @Test
   void anotherProductFound() {
-    sale.onBarcode("23456");
+    sale.onBarcode(new Barcode("23456"));
 
     assertThat("$12.50").isEqualTo(display.getText());
   }
@@ -39,7 +39,7 @@ public class SellOneItemTest {
   void emptyBarcode() {
     Sale sale = new Sale(display, new Catalog(Collections.emptyMap()));
 
-    sale.onBarcode("");
+    sale.onBarcode(new Barcode(""));
 
     assertThat("Scanning error: empty barcode").isEqualTo(display.getText());
   }
@@ -49,7 +49,7 @@ public class SellOneItemTest {
     Display display = new Display();
     Sale sale = new Sale(display, new Catalog(Map.of("12345", 795, "23456", 1250)));
 
-    sale.onBarcode("99999");
+    sale.onBarcode(new Barcode("99999"));
 
     assertThat("Product not found for 99999").isEqualTo(display.getText());
   }
