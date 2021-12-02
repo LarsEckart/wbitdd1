@@ -30,7 +30,7 @@ public class SellMultipleItemsTest {
     Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode(Barcode.from("12345"));
+    sale.onBarcode(Barcode.from("12345").get());
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $6.50");
@@ -42,7 +42,7 @@ public class SellMultipleItemsTest {
     Catalog catalog = new Catalog(Map.of("12345", 650));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode(Barcode.from("99999"));
+    sale.onBarcode(Barcode.from("99999").get());
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
@@ -58,9 +58,9 @@ public class SellMultipleItemsTest {
             "a third product you won't find");
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode(Barcode.from("product you won't find"));
-    sale.onBarcode(Barcode.from("another product you won't find"));
-    sale.onBarcode(Barcode.from("a third product you won't find"));
+    sale.onBarcode(Barcode.from("product you won't find").get());
+    sale.onBarcode(Barcode.from("another product you won't find").get());
+    sale.onBarcode(Barcode.from("a third product you won't find").get());
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("No sale in progress. Try scanning a product.");
@@ -85,9 +85,9 @@ public class SellMultipleItemsTest {
                 "3", 330));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode(Barcode.from("1"));
-    sale.onBarcode(Barcode.from("2"));
-    sale.onBarcode(Barcode.from("3"));
+    sale.onBarcode(Barcode.from("1").get());
+    sale.onBarcode(Barcode.from("2").get());
+    sale.onBarcode(Barcode.from("3").get());
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $24.55");
@@ -103,9 +103,9 @@ public class SellMultipleItemsTest {
                 "2", 500));
     Sale sale = new Sale(display, catalog);
 
-    sale.onBarcode(Barcode.from("1"));
-    sale.onBarcode(Barcode.from("you don't know this product"));
-    sale.onBarcode(Barcode.from("2"));
+    sale.onBarcode(Barcode.from("1").get());
+    sale.onBarcode(Barcode.from("you don't know this product").get());
+    sale.onBarcode(Barcode.from("2").get());
     sale.onTotal();
 
     assertThat(display.getText()).isEqualTo("Total: $17.00");

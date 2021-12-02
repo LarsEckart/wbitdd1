@@ -1,5 +1,6 @@
 package com.larseckart.pos;
 
+import io.vavr.control.Either;
 import java.util.Objects;
 
 public final class Barcode {
@@ -10,11 +11,11 @@ public final class Barcode {
     this.barcode = barcode;
   }
 
-  public static Barcode from(String barcode) {
+  public static Either<ParseFailureReason, Barcode> from(String barcode) {
     if ("".equals(barcode)) {
-      throw new IllegalArgumentException("Barcode cannot be empty");
+      return Either.left(new ParseFailureReason("Barcode cannot be empty"));
     }
-    return new Barcode(barcode);
+    return Either.right(new Barcode(barcode));
   }
 
   public String barcode() {

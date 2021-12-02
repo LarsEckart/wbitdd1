@@ -23,14 +23,14 @@ public class SellOneItemTest {
 
   @Test
   void productFound() {
-    sale.onBarcode(Barcode.from("12345"));
+    sale.onBarcode(Barcode.from("12345").get());
 
     assertThat(display.getText()).isEqualTo("$7.95");
   }
 
   @Test
   void anotherProductFound() {
-    sale.onBarcode(Barcode.from("23456"));
+    sale.onBarcode(Barcode.from("23456").get());
 
     assertThat(display.getText()).isEqualTo("$12.50");
   }
@@ -40,7 +40,7 @@ public class SellOneItemTest {
     Display display = new Display();
     Sale sale = new Sale(display, new Catalog(Map.of("12345", 795, "23456", 1250)));
 
-    sale.onBarcode(Barcode.from("99999"));
+    sale.onBarcode(Barcode.from("99999").get());
 
     assertThat(display.getText()).isEqualTo("Product not found for 99999");
   }
