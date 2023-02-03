@@ -22,7 +22,7 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.21.0")
     testImplementation("com.approvaltests:approvaltests:12.4.1")
     testImplementation("com.larseckart:junit-tcr-extensions:0.0.1")
-    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.8.1'
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.13'
 }
 
 tasks.withType(JavaCompile) {
